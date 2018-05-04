@@ -1,0 +1,10 @@
+Testliste:
+
+Schema
+Schema should exist
+flag should have one character
+every flag has a default value
+every flag should be returned by the parser
+returned values should have the correct type
+
+parsing should fail if schema does not exist
