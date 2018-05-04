@@ -8,3 +8,12 @@ every flag should be returned by the parser
 returned values should have the correct type
 
 parsing should fail if schema does not exist
+
+--------------------
+
+Todo:
+
+Create mentioned classes
+Write Unit-tests for BooleanArgument
+Write Unit-tests for IntegerArgument
+Write Unit-tests for StringArgument
