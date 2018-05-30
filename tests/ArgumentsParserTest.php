@@ -2,6 +2,12 @@
 
 namespace tests;
 
+use App\ArgumentParser;
+use App\Arguments\BooleanArgument;
+use App\Arguments\IntegerArgument;
+use App\Arguments\StringArgument;
+use App\Scheme;
+
 class ArgumentsParserTest extends \PHPUnit_Framework_TestCase
 {
     /**
