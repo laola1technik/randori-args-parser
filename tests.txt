@@ -13,7 +13,4 @@ parsing should fail if schema does not exist
 
 Todo:
 
-Create mentioned classes
-Write Unit-tests for BooleanArgument
-Write Unit-tests for IntegerArgument
-Write Unit-tests for StringArgument
+Write test for argument parser with different command line arguments
