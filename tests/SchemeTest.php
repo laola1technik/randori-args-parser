@@ -4,6 +4,7 @@ namespace Tests;
 
 
 use App\Arguments\BooleanArgument;
+use App\Arguments\IntegerArgument;
 use App\Scheme;
 
 class SchemeTest extends \PHPUnit_Framework_TestCase
@@ -20,5 +21,20 @@ class SchemeTest extends \PHPUnit_Framework_TestCase
         $returnedArgument = $scheme->get($name);
 
         $this->assertSame($argument, $returnedArgument);
+    }
+
+    /**
+     * @test
+     */
+    public function should_return_argument_by_name_from_multiple_arguments()
+    {
+        $name = "i";
+        $arguments[] = new BooleanArgument("h");
+        $arguments[] = new IntegerArgument($name);
+        $scheme = new Scheme($arguments);
+
+        $returnedArgument = $scheme->get($name);
+
+        $this->assertSame($arguments[1], $returnedArgument);
     }
 }

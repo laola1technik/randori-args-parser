@@ -15,6 +15,10 @@ class Scheme
 
     public function get($name)
     {
-        return $this->arguments[0];
+        foreach ($this->arguments as $argument) {
+            if ($argument->getName() === $name) {
+                return $argument;
+            }
+        }
     }
 }
