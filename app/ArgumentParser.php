@@ -19,11 +19,7 @@ class ArgumentParser
 
     public function get($name)
     {
-        if ($name === "p") {
-            return 8080;
-        } elseif ($name === "d") {
-            return "/usr/logs";
-        }
-        return true;
+        $argument = $this->scheme->get($name);
+        return $argument->getValue();
     }
 }

@@ -17,4 +17,12 @@ class IntegerArgument implements Argument
     {
         return $this->name;
     }
+
+    /**
+     * @return int
+     */
+    public function getValue()
+    {
+        return 8080;
+    }
 }

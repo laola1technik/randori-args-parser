@@ -17,4 +17,12 @@ class BooleanArgument implements Argument
     {
         return $this->name;
     }
+
+    /**
+     * @return bool
+     */
+    public function getValue()
+    {
+        return true;
+    }
 }

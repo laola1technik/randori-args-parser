@@ -17,4 +17,12 @@ class StringArgument implements Argument
     {
         return $this->name;
     }
+
+    /**
+     * @return string
+     */
+    public function getValue()
+    {
+        return "/usr/logs";
+    }
 }

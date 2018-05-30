@@ -8,4 +8,6 @@ interface Argument
      * @return string
      */
     public function getName();
+
+    public function getValue();
 }
