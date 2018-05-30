@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\Unit;
+namespace tests;
 
 class ArgumentsParserTest extends \PHPUnit_Framework_TestCase
 {
