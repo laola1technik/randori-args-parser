@@ -3,7 +3,7 @@
 namespace App\Arguments;
 
 
-class BooleanArgument
+class BooleanArgument implements Argument
 {
 
     private $name;

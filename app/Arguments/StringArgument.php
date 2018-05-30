@@ -3,7 +3,7 @@
 namespace App\Arguments;
 
 
-class StringArgument
+class StringArgument implements Argument
 {
 
     private $name;
@@ -11,5 +11,10 @@ class StringArgument
     public function __construct($name)
     {
         $this->name = $name;
+    }
+
+    public function getName()
+    {
+        return $this->name;
     }
 }

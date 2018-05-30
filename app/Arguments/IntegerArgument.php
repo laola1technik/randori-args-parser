@@ -3,7 +3,7 @@
 namespace App\Arguments;
 
 
-class IntegerArgument
+class IntegerArgument implements Argument
 {
 
     private $name;
