@@ -37,4 +37,14 @@ class SchemeTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame($arguments[1], $returnedArgument);
     }
+
+    /**
+     * @test
+     * @expectedException \App\Exceptions\ArgumentNotFoundException
+     */
+    public function should_fail_if_argument_not_found()
+    {
+        $scheme = new Scheme([]);
+        $scheme->get("x");
+    }
 }

@@ -3,6 +3,8 @@
 namespace App;
 
 
+use App\Exceptions\ArgumentNotFoundException;
+
 class Scheme
 {
     private $arguments;
@@ -13,6 +15,9 @@ class Scheme
         $this->arguments = $arguments;
     }
 
+    /**
+     * @throws ArgumentNotFoundException
+     */
     public function get($name)
     {
         foreach ($this->arguments as $argument) {
@@ -20,5 +25,7 @@ class Scheme
                 return $argument;
             }
         }
+
+        throw new ArgumentNotFoundException();
     }
 }
