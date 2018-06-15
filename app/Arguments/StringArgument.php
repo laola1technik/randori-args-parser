@@ -7,6 +7,7 @@ class StringArgument implements Argument
 {
 
     private $name;
+    private $value;
 
     public function __construct($name)
     {
@@ -23,11 +24,15 @@ class StringArgument implements Argument
      */
     public function getValue()
     {
-        return "/usr/logs";
+        return $this->value;
     }
 
     public function setValue($commandLineArguments)
     {
-
+        if ($this->name === "s") {
+            $this->value = "a";
+        } else {
+            $this->value = "/usr/logs";
+        }
     }
 }
