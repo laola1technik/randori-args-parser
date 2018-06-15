@@ -13,7 +13,7 @@ class IntegerArgumentTest extends \PHPUnit_Framework_TestCase
     {
         $integerArgument = new IntegerArgument("j");
         $expectedValue = 3;
-        $integerArgument->setValue($expectedValue);
+        $integerArgument->setValue("-p " . $expectedValue);
 
         $value = $integerArgument->getValue();
 

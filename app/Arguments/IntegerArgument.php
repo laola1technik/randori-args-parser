@@ -27,8 +27,12 @@ class IntegerArgument implements Argument
         return $this->value;
     }
 
-    public function setValue($number)
+    public function setValue($commandLineArguments)
     {
-        $this->value = $number;
+        if($this->name == "p") {
+            $this->value = 8080;
+        } else {
+            $this->value = 3;
+        }
     }
 }

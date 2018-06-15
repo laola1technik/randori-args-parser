@@ -25,4 +25,9 @@ class StringArgument implements Argument
     {
         return "/usr/logs";
     }
+
+    public function setValue($commandLineArguments)
+    {
+
+    }
 }
