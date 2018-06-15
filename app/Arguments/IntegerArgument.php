@@ -7,6 +7,7 @@ class IntegerArgument implements Argument
 {
 
     private $name;
+    private $value;
 
     public function __construct($name)
     {
@@ -23,6 +24,11 @@ class IntegerArgument implements Argument
      */
     public function getValue()
     {
-        return 8080;
+        return $this->value;
+    }
+
+    public function setValue($number)
+    {
+        $this->value = $number;
     }
 }

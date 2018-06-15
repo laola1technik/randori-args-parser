@@ -4,6 +4,7 @@ namespace App;
 
 
 use App\Arguments\BooleanArgument;
+use App\Arguments\IntegerArgument;
 
 class ArgumentParser
 {
@@ -19,7 +20,10 @@ class ArgumentParser
         foreach ($this->scheme->getArguments() as $argument) {
             if ($argument instanceof BooleanArgument) {
                 $argument->setValue(strpos($commandLineArguments, "-l") !== -1);
+            } elseif ($argument instanceof IntegerArgument) {
+              $argument->setValue(strpos($commandLineArguments, "-p") !== -1 ? 8080 : 3);
             }
+
         }
 
 

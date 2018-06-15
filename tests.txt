@@ -9,6 +9,7 @@ returned values should have the correct type
 
 parsing should fail if schema does not exist
 
+test type for all argument values
 --------------------
 
 Todo:
