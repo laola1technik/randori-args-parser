@@ -32,4 +32,9 @@ class Scheme
 
         throw new ArgumentNotFoundException();
     }
+
+    public function getArguments()
+    {
+        return $this->arguments;
+    }
 }

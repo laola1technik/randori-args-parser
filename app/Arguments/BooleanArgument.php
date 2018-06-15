@@ -5,8 +5,8 @@ namespace App\Arguments;
 
 class BooleanArgument implements Argument
 {
-
     private $name;
+    private $value;
 
     public function __construct($name)
     {
@@ -23,6 +23,11 @@ class BooleanArgument implements Argument
      */
     public function getValue()
     {
-        return true;
+        return $this->value;
+    }
+
+    public function setValue($value)
+    {
+        $this->value = $value;
     }
 }

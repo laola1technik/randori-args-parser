@@ -3,6 +3,8 @@
 namespace App;
 
 
+use App\Arguments\BooleanArgument;
+
 class ArgumentParser
 {
     private $scheme;
@@ -14,6 +16,12 @@ class ArgumentParser
 
     public function parse($commandLineArguments)
     {
+        foreach ($this->scheme->getArguments() as $argument) {
+            if ($argument instanceof BooleanArgument) {
+                $argument->setValue(strpos($commandLineArguments, "-l") !== -1);
+            }
+        }
+
 
     }
 
