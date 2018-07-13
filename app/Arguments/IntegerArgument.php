@@ -29,10 +29,8 @@ class IntegerArgument implements Argument
 
     public function parse($commandLineArguments)
     {
-        if($this->name == "p") {
-            $this->value = 8080;
-        } else {
-            $this->value = 3;
-        }
+        $pattern = "/.*?-{$this->name} (\d+)/";
+        preg_match($pattern, $commandLineArguments, $matches);
+        $this->value = (int)$matches[1];
     }
 }

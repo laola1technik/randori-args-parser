@@ -14,6 +14,5 @@ test type for all argument values
 
 Todo:
 
-Rename set Value method (parse, matches)
 Identify pattern for arguments in commandlineArgument
 Adjust interface (renamed set Value method)
