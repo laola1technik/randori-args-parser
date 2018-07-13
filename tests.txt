@@ -14,5 +14,5 @@ test type for all argument values
 
 Todo:
 
+IntegerArgument default value
 Identify pattern for arguments in commandlineArgument
-Adjust interface (renamed set Value method)
