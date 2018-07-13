@@ -3,6 +3,7 @@
 namespace Tests;
 
 use App\Arguments\IntegerArgument;
+use InvalidArgumentException;
 
 class IntegerArgumentTest extends \PHPUnit_Framework_TestCase
 {
@@ -32,4 +33,24 @@ class IntegerArgumentTest extends \PHPUnit_Framework_TestCase
             "negativeNumber" => ["name" => "p", "value" => -1],
         ];
     }
+
+    /**
+     * @test
+     * @expectedException InvalidArgumentException
+     * @dataProvider nameAndInvalidValue
+     */
+    public function shouldFailIfValueIsInvalid($name, $invalidValue)
+    {
+        $integerArgument = new IntegerArgument($name);
+        $integerArgument->parse("-{$name} {$invalidValue}");
+    }
+
+    public function nameAndInvalidValue()
+    {
+        return [
+            "singleLetter" => ["name" => "p", "value" => "b"]
+        ];
+    }
+
+
 }

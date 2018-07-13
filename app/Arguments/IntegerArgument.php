@@ -30,7 +30,13 @@ class IntegerArgument implements Argument
     public function parse($commandLineArguments)
     {
         $pattern = "/.*?-{$this->name} (-?\d+)/";
-        preg_match($pattern, $commandLineArguments, $matches);
-        $this->value = (int)$matches[1];
+        $foundMatch = preg_match($pattern, $commandLineArguments, $matches);
+        if($foundMatch) {
+            $this->value = (int)$matches[1];
+        } else {
+            throw new \InvalidArgumentException(
+                "Value supplied for -" . $this->name . " is not an integer."
+            );
+        }
     }
 }
