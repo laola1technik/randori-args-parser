@@ -8,29 +8,28 @@ class IntegerArgumentTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
+     * @dataProvider nameAndValue
+     * @param $name
+     * @param $value
      */
-    public function should_get_integer_value_3()
+    public function should_get_integer_value($name, $value)
     {
-        $integerArgument = new IntegerArgument("p");
-        $expectedValue = 3;
-        $integerArgument->parse("-p " . $expectedValue);
+        $integerArgument = new IntegerArgument($name);
+        $integerArgument->parse("-{$name} {$value}");
 
-        $value = $integerArgument->getValue();
+        $matchedValue = $integerArgument->getValue();
 
-        $this->assertSame($expectedValue, $value);
+        $this->assertSame($value, $matchedValue);
     }
 
-    /**
-     * @test
-     */
-    public function should_get_integer_value_4()
+    public function nameAndValue()
     {
-        $integerArgument = new IntegerArgument("p");
-        $expectedValue = 4;
-        $integerArgument->parse("-p " . $expectedValue);
-
-        $value = $integerArgument->getValue();
-
-        $this->assertSame($expectedValue, $value);
+        return [
+            "zero" => ["name" => "j", "value" => 0],
+            "singleDigit" => ["name" => "j", "value" => 3],
+            "multiDigit" => ["name" => "p", "value" => 8080],
+            "bigNumber" => ["name" => "p", "value" => PHP_INT_MAX],
+            "negativeNumber" => ["name" => "p", "value" => -1],
+        ];
     }
 }
