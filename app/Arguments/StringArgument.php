@@ -27,7 +27,7 @@ class StringArgument implements Argument
         return $this->value;
     }
 
-    public function setValue($commandLineArguments)
+    public function parse($commandLineArguments)
     {
         if ($this->name === "s") {
             $this->value = "a";

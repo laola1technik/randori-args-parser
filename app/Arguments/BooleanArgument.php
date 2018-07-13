@@ -26,7 +26,7 @@ class BooleanArgument implements Argument
         return $this->value;
     }
 
-    public function setValue($commandLineArguments)
+    public function parse($commandLineArguments)
     {
         $this->value = strpos($commandLineArguments, "-" . $this->name) !== false;
     }

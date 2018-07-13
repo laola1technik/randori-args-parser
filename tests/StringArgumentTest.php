@@ -13,7 +13,7 @@ class StringArgumentTest extends \PHPUnit_Framework_TestCase
     {
         $stringArgument = new StringArgument("s");
         $expectedValue = "a";
-        $stringArgument->setValue("-s " . $expectedValue);
+        $stringArgument->parse("-s " . $expectedValue);
 
         $value = $stringArgument->getValue();
 

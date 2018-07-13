@@ -12,7 +12,7 @@ class BooleanArgumentTest extends \PHPUnit_Framework_TestCase
     public function should_get_false_value_if_false()
     {
         $booleanArgument = new BooleanArgument("f");
-        $booleanArgument->setValue("-x");
+        $booleanArgument->parse("-x");
 
         $value = $booleanArgument->getValue();
         $this->assertFalse($value);

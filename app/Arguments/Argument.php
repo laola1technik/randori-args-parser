@@ -10,4 +10,6 @@ interface Argument
     public function getName();
 
     public function getValue();
+
+    public function parse($commandLineArguments);
 }

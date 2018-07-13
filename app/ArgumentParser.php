@@ -3,8 +3,7 @@
 namespace App;
 
 
-use App\Arguments\BooleanArgument;
-use App\Arguments\IntegerArgument;
+use App\Arguments\Argument;
 
 class ArgumentParser
 {
@@ -17,11 +16,10 @@ class ArgumentParser
 
     public function parse($commandLineArguments)
     {
+        /** @var Argument $argument */
         foreach ($this->scheme->getArguments() as $argument) {
-            $argument->setValue($commandLineArguments);
+            $argument->parse($commandLineArguments);
         }
-
-
     }
 
     public function get($name)
