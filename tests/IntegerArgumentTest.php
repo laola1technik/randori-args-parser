@@ -38,6 +38,8 @@ class IntegerArgumentTest extends \PHPUnit_Framework_TestCase
      * @test
      * @expectedException InvalidArgumentException
      * @dataProvider nameAndInvalidValue
+     * @param $name
+     * @param $invalidValue
      */
     public function shouldFailIfValueIsInvalid($name, $invalidValue)
     {
@@ -48,7 +50,10 @@ class IntegerArgumentTest extends \PHPUnit_Framework_TestCase
     public function nameAndInvalidValue()
     {
         return [
-            "singleLetter" => ["name" => "p", "value" => "b"]
+            "singleLetter" => ["name" => "p", "value" => "b"],
+            "specialCharacter" => ["name" => "p", "value" => "♥"],
+            "specialCharacter2" => ["name" => "p", "value" => "<2>"],
+            "float" => ["name" => "p", "value" => "1.5"],
         ];
     }
 
