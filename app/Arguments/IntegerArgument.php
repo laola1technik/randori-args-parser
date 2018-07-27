@@ -48,10 +48,6 @@ class IntegerArgument implements Argument
             } else {
                 $this->value = self::DEFAULT_VALUE;
             }
-        } else {
-            throw new \InvalidArgumentException(
-                $this->name . " not found."
-            );
         }
     }
 }

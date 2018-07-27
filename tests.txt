@@ -14,5 +14,6 @@ test type for all argument values
 
 Todo:
 
-IntegerArgument default value
+Refactor integerArgument
+Return default value if a flag mentioned in scheme is missing
 Identify pattern for arguments in commandlineArgument
