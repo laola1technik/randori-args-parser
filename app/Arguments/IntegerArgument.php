@@ -30,16 +30,27 @@ class IntegerArgument implements Argument
 
     public function parse($commandLineArguments)
     {
-        $pattern = "/.*?-({$this->name})\s?(-?\d+)?(?:$|\s)+/";
-        $foundMatch = preg_match($pattern, $commandLineArguments, $matches);
+        $nameAndValuePattern = "/.*?-({$this->name})\s*(\S+|-\d+)?/";
+        $integerPattern = "/^-?\d+$/";
+
+        $foundMatch = preg_match($nameAndValuePattern, $commandLineArguments, $matches);
         $matchCount = count($matches);
-        if ($matchCount === 3) {
-            $this->value = (int)$matches[2];
-        //} elseif ($matchCount === 2) {
-        //    $this->value = self::DEFAULT_VALUE;
+        if ($foundMatch) {
+            if ($matchCount === 3) {
+                $isInteger = preg_match($integerPattern, $matches[2]);
+                if ($isInteger) {
+                    $this->value = (int)$matches[2];
+                } else {
+                    throw new \InvalidArgumentException(
+                        "Value supplied for -" . $this->name . " is not an integer."
+                    );
+                }
+            } else {
+                $this->value = self::DEFAULT_VALUE;
+            }
         } else {
             throw new \InvalidArgumentException(
-                "Value supplied for -" . $this->name . " is not an integer."
+                $this->name . " not found."
             );
         }
     }
