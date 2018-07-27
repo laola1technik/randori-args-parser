@@ -57,5 +57,19 @@ class IntegerArgumentTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
+    /**
+     * @test
+     */
+    public function shouldGiveDefaultValueZeroIfNoValueSupplied()
+    {
+        $this->markTestIncomplete('Needs refactor');
+        $integerArgument = new IntegerArgument("p");
+
+        $integerArgument->parse("-p");
+        $matchedValue = $integerArgument->getValue();
+
+        $this->assertSame(0, $matchedValue);
+    }
+
 
 }
