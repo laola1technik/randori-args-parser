@@ -31,27 +31,41 @@ class IntegerArgument implements Argument
     public function parse($commandLineArguments)
     {
         $nameAndValuePattern = "/.*?-({$this->name})\s*(\S+|-\d+)?/";
-        $integerPattern = "/^-?\d+$/";
 
-        $foundMatch = preg_match($nameAndValuePattern, $commandLineArguments, $matches);
+        $argumentFound = preg_match($nameAndValuePattern, $commandLineArguments, $matches);
         $matchCount = count($matches);
-        if ($foundMatch) {
-            if ($matchCount === 3) {
-                $isInteger = preg_match($integerPattern, $matches[2]);
-                if ($isInteger) {
-                    $this->value = (int)$matches[2];
-                } else {
-                    throw new \InvalidArgumentException(
-                        "Value supplied for -{$this->name} is not an integer."
-                    );
-                }
-            } else {
+        if ($argumentFound) {
+            if (!$this->hasValue($matchCount)) {
                 throw new \InvalidArgumentException(
                     "No value supplied for -{$this->name} argument."
                 );
             }
+
+            $argumentValue = $matches[2];
+            if (!$this->isInteger($argumentValue)) {
+                throw new \InvalidArgumentException(
+                    "Value supplied for -{$this->name} is not an integer."
+                );
+            }
+            $this->value = (int)$argumentValue;
+
         } else {
             $this->value = self::DEFAULT_VALUE;
         }
+    }
+
+    private function hasValue($matchCount)
+    {
+        return $matchCount === 3;
+    }
+
+    /**
+     * @param $value
+     * @return false|int
+     */
+    private function isInteger($value)
+    {
+        $integerPattern = "/^-?\d+$/";
+        return preg_match($integerPattern, $value);
     }
 }
