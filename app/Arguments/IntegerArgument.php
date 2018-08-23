@@ -33,9 +33,8 @@ class IntegerArgument implements Argument
         $nameAndValuePattern = "/.*?-({$this->name})\s*(\S+|-\d+)?/";
 
         $argumentFound = preg_match($nameAndValuePattern, $commandLineArguments, $matches);
-        $matchCount = count($matches);
         if ($argumentFound) {
-            if (!$this->hasValue($matchCount)) {
+            if (!$this->hasValue($matches)) {
                 throw new \InvalidArgumentException(
                     "No value supplied for -{$this->name} argument."
                 );
@@ -54,9 +53,9 @@ class IntegerArgument implements Argument
         }
     }
 
-    private function hasValue($matchCount)
+    private function hasValue($matches)
     {
-        return $matchCount === 3;
+        return count($matches) === 3;
     }
 
     /**
