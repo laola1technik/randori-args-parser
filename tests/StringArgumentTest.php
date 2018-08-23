@@ -30,4 +30,32 @@ class StringArgumentTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(StringArgument::DEFAULT_VALUE, $stringArgument->getValue());
     }
+
+    /**
+     * @test
+     * @dataProvider nameAndValue
+     * @param $name
+     * @param $value
+     */
+    public function should_get_string_value($name, $value)
+    {
+        $stringArgument = new StringArgument($name);
+        $stringArgument->parse("-{$name} {$value}");
+
+        $matchedValue = $stringArgument->getValue();
+
+        $this->assertSame($value, $matchedValue);
+    }
+
+    public function nameAndValue()
+    {
+        return [
+            "directory" => ["name" => "d", "value" => "/usr/logs"],
+            "digits" => ["name" => "d", "value" => "253454"],
+            "date" => ["name" => "d", "value" => "1993-05-25"],
+            "specialCharacters" => ["name" => "d", "value" => "&%?$!,.-_#+*~"],
+            "name" => ["name" => "d", "value" => "matthias"],
+            "singleCharacter" => ["name" => "d", "value" => "z"],
+        ];
+    }
 }
