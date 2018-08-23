@@ -33,29 +33,18 @@ class IntegerArgument implements Argument
         $nameAndValuePattern = "/.*?-({$this->name})\s*(\S+|-\d+)?/";
 
         $argumentFound = preg_match($nameAndValuePattern, $commandLineArguments, $matches);
-        if ($argumentFound) {
-            if (!$this->hasValue($matches)) {
-                throw new \InvalidArgumentException(
-                    "No value supplied for -{$this->name} argument."
-                );
-            }
-
-            $argumentValue = $matches[2];
-            if (!$this->isInteger($argumentValue)) {
-                throw new \InvalidArgumentException(
-                    "Value supplied for -{$this->name} is not an integer."
-                );
-            }
-            $this->value = (int)$argumentValue;
-
-        } else {
+        if (!$argumentFound) {
             $this->value = self::DEFAULT_VALUE;
+            return;
         }
-    }
 
-    private function hasValue($matches)
-    {
-        return count($matches) === 3;
+        $argumentValue = $this->getArgumentValue($matches);
+        if (!$this->isInteger($argumentValue)) {
+            throw new \InvalidArgumentException(
+                "Value supplied for -{$this->name} is not an integer."
+            );
+        }
+        $this->value = (int)$argumentValue;
     }
 
     /**
@@ -66,5 +55,16 @@ class IntegerArgument implements Argument
     {
         $integerPattern = "/^-?\d+$/";
         return preg_match($integerPattern, $value);
+    }
+
+    private function getArgumentValue($matches)
+    {
+        if (!isset($matches[2])) {
+            throw new \InvalidArgumentException(
+                "No value supplied for -{$this->name} argument."
+            );
+        }
+
+        return $matches[2];
     }
 }
