@@ -38,13 +38,7 @@ class IntegerArgument implements Argument
             return;
         }
 
-        $argumentValue = $this->getArgumentValue($matches);
-        if (!$this->isInteger($argumentValue)) {
-            throw new \InvalidArgumentException(
-                "Value supplied for -{$this->name} is not an integer."
-            );
-        }
-        $this->value = (int)$argumentValue;
+        $this->value = $this->getArgumentValue($matches);
     }
 
     /**
@@ -64,7 +58,17 @@ class IntegerArgument implements Argument
                 "No value supplied for -{$this->name} argument."
             );
         }
+        $this->validateArgumentValue($matches[2]);
 
-        return $matches[2];
+        return (int)$matches[2];
+    }
+
+    private function validateArgumentValue($argumentValue)
+    {
+        if (!$this->isInteger($argumentValue)) {
+            throw new \InvalidArgumentException(
+                "Value supplied for -{$this->name} is not an integer."
+            );
+        }
     }
 }
