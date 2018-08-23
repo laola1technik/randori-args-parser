@@ -69,5 +69,17 @@ class IntegerArgumentTest extends \PHPUnit_Framework_TestCase
         $integerArgument->getValue();
     }
 
+    /**
+     * @test
+     */
+    public function shouldReturnDefaultValueIfArgumentIsMissing()
+    {
+        $integerArgument = new IntegerArgument("p");
+
+        $integerArgument->parse("any");
+
+        $this->assertEquals(IntegerArgument::DEFAULT_VALUE, $integerArgument->getValue());
+    }
+
 
 }
