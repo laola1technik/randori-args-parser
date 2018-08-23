@@ -59,15 +59,14 @@ class IntegerArgumentTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @expectedException \InvalidArgumentException
      */
-    public function shouldGiveDefaultValueZeroIfNoValueSupplied()
+    public function shouldFailIfValueIsMissing()
     {
         $integerArgument = new IntegerArgument("p");
 
         $integerArgument->parse("-p");
-        $matchedValue = $integerArgument->getValue();
-
-        $this->assertSame(0, $matchedValue);
+        $integerArgument->getValue();
     }
 
 

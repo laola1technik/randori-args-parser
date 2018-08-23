@@ -42,12 +42,16 @@ class IntegerArgument implements Argument
                     $this->value = (int)$matches[2];
                 } else {
                     throw new \InvalidArgumentException(
-                        "Value supplied for -" . $this->name . " is not an integer."
+                        "Value supplied for -{$this->name} is not an integer."
                     );
                 }
             } else {
-                $this->value = self::DEFAULT_VALUE;
+                throw new \InvalidArgumentException(
+                    "No value supplied for -{$this->name} argument."
+                );
             }
+        } else {
+            $this->value = self::DEFAULT_VALUE;
         }
     }
 }
