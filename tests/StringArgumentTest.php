@@ -19,4 +19,15 @@ class StringArgumentTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame($expectedValue, $value);
     }
+    /**
+     * @test
+     */
+    public function shouldReturnDefaultValueIfArgumentIsMissing()
+    {
+        $stringArgument = new StringArgument("s");
+
+        $stringArgument->parse("any");
+
+        $this->assertEquals(StringArgument::DEFAULT_VALUE, $stringArgument->getValue());
+    }
 }
