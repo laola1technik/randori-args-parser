@@ -30,7 +30,7 @@ class IntegerArgument implements Argument
 
     public function parse($commandLineArguments)
     {
-        $nameAndValuePattern = "/.*?-({$this->name})\s*(\S+|-\d+)?/";
+        $nameAndValuePattern = "/.*?-({$this->name})\s*(\S+)?/";
 
         $argumentFound = preg_match($nameAndValuePattern, $commandLineArguments, $matches);
         if (!$argumentFound) {
