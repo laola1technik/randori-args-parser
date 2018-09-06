@@ -38,27 +38,38 @@ class IntegerArgument implements Argument
             return;
         }
 
-        $this->value = $this->getArgumentValue($matches);
-    }
-    private function getArgumentValue($matches)
-    {
-        if (!isset($matches[2])) {
+        if (!$this->hasValue($matches)) {
             throw new \InvalidArgumentException(
                 "No value supplied for -{$this->name} argument."
             );
         }
-        $this->validateArgumentValue($matches[2]);
 
-        return (int)$matches[2];
-    }
-
-    private function validateArgumentValue($argumentValue)
-    {
-        if (!$this->isInteger($argumentValue)) {
+        if(!$this->isValid($matches[2])) {
             throw new \InvalidArgumentException(
                 "Value supplied for -{$this->name} is not an integer."
             );
         }
+
+        $this->value = $this->getArgumentValue($matches[2]);
+    }
+
+    /**
+     * @param $matches array
+     * @return bool
+     */
+    private function hasValue($matches)
+    {
+        return isset($matches[2]);
+    }
+
+    private function getArgumentValue($value)
+    {
+        return (int)$value;
+    }
+
+    private function isValid($value)
+    {
+        return $this->isInteger($value);
     }
 
     /**
