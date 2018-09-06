@@ -79,7 +79,8 @@ class StringArgumentTest extends \PHPUnit_Framework_TestCase
     public function nameAndInvalidValue()
     {
         return [
-            "noValue" => ["name" => "d", "value" => ""]
+            "noValue" => ["name" => "d", "value" => ""],
+            "whitespace" => ["name" => "d", "value" => " "]
         ];
     }
 }
