@@ -19,8 +19,9 @@ class IntegerArgumentTest extends \PHPUnit_Framework_TestCase
         $integerArgument->parse("-{$name} {$value}");
 
         $matchedValue = $integerArgument->getValue();
+        $integerValue = (int)$value;
 
-        $this->assertSame($value, $matchedValue);
+        $this->assertSame($integerValue, $matchedValue);
     }
 
     public function nameAndValue()
@@ -31,6 +32,7 @@ class IntegerArgumentTest extends \PHPUnit_Framework_TestCase
             "multiDigit" => ["name" => "p", "value" => 8080],
             "bigNumber" => ["name" => "p", "value" => PHP_INT_MAX],
             "negativeNumber" => ["name" => "p", "value" => -1],
+            "startsWithWhitespace" => ["name" => "p", "value" => " 1"]
         ];
     }
 
