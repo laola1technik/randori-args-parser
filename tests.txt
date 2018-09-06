@@ -21,3 +21,4 @@ string argument test error cases
 handle string argument with whitespace in between
 handle string argument: minus and one more character
 handle string argument in quotes
+Check for argument names with more than one character
