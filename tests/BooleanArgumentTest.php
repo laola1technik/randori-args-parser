@@ -15,6 +15,20 @@ class BooleanArgumentTest extends \PHPUnit_Framework_TestCase
         $booleanArgument->parse("-x");
 
         $value = $booleanArgument->getValue();
+
         $this->assertFalse($value);
+    }
+
+    /**
+     * @test
+     */
+    public function should_get_true_value_if_argument_is_present()
+    {
+        $booleanArgument = new BooleanArgument("f");
+        $booleanArgument->parse("-f");
+
+        $value = $booleanArgument->getValue();
+
+        $this->assertTrue($value);
     }
 }
