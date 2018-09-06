@@ -27,11 +27,11 @@ class IntegerArgumentTest extends \PHPUnit_Framework_TestCase
     public function nameAndValue()
     {
         return [
-            "zero" => ["name" => "j", "value" => 0],
-            "singleDigit" => ["name" => "j", "value" => 3],
-            "multiDigit" => ["name" => "p", "value" => 8080],
-            "bigNumber" => ["name" => "p", "value" => PHP_INT_MAX],
-            "negativeNumber" => ["name" => "p", "value" => -1],
+            "zero" => ["name" => "j", "value" => "0"],
+            "singleDigit" => ["name" => "j", "value" => "3"],
+            "multiDigit" => ["name" => "p", "value" => "8080"],
+            "bigNumber" => ["name" => "p", "value" => (string)PHP_INT_MAX],
+            "negativeNumber" => ["name" => "p", "value" => "-1"],
             "startsWithWhitespace" => ["name" => "p", "value" => " 1"]
         ];
     }
