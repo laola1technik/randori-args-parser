@@ -20,6 +20,7 @@ class StringArgumentTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame($expectedValue, $value);
     }
+
     /**
      * @test
      */
@@ -44,8 +45,9 @@ class StringArgumentTest extends \PHPUnit_Framework_TestCase
         $stringArgument->parse("-{$name} {$value}");
 
         $matchedValue = $stringArgument->getValue();
+        $expectedValue = trim($value);
 
-        $this->assertSame($value, $matchedValue);
+        $this->assertSame($expectedValue, $matchedValue);
     }
 
     public function nameAndValue()
@@ -57,6 +59,7 @@ class StringArgumentTest extends \PHPUnit_Framework_TestCase
             "specialCharacters" => ["name" => "d", "value" => "&%?$!,.-_#+*~"],
             "name" => ["name" => "d", "value" => "matthias"],
             "singleCharacter" => ["name" => "d", "value" => "z"],
+            "firstCharacterWhitespace" => ["name" => "d", "value" => " test"],
         ];
     }
 
