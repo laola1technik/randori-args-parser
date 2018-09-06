@@ -59,7 +59,7 @@ class StringArgumentTest extends \PHPUnit_Framework_TestCase
             "specialCharacters" => ["name" => "d", "value" => "&%?$!,.-_#+*~"],
             "name" => ["name" => "d", "value" => "matthias"],
             "singleCharacter" => ["name" => "d", "value" => "z"],
-            "firstCharacterWhitespace" => ["name" => "d", "value" => " test"],
+            "firstCharacterWhitespace" => ["name" => "d", "value" => " test"]
         ];
     }
 

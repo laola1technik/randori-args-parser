@@ -18,3 +18,4 @@ string argument test error cases
 Boolean argument test error cases
 unify argument parsing
 Identify pattern for arguments in commandlineArgument
+handle string argument with whitespace in between
