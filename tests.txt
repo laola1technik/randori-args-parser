@@ -14,8 +14,10 @@ test type for all argument values
 
 Todo:
 
-string argument test error cases
 Boolean argument test error cases
 unify argument parsing
 Identify pattern for arguments in commandlineArgument
+string argument test error cases
 handle string argument with whitespace in between
+handle string argument: minus and one more character
+handle string argument in quotes
