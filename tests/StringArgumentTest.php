@@ -3,6 +3,7 @@
 namespace Tests;
 
 use App\Arguments\StringArgument;
+use InvalidArgumentException;
 
 class StringArgumentTest extends \PHPUnit_Framework_TestCase
 {
@@ -56,6 +57,26 @@ class StringArgumentTest extends \PHPUnit_Framework_TestCase
             "specialCharacters" => ["name" => "d", "value" => "&%?$!,.-_#+*~"],
             "name" => ["name" => "d", "value" => "matthias"],
             "singleCharacter" => ["name" => "d", "value" => "z"],
+        ];
+    }
+
+    /**
+     * @test
+     * @expectedException InvalidArgumentException
+     * @dataProvider nameAndInvalidValue
+     * @param $name
+     * @param $invalidValue
+     */
+    public function shouldFailIfValueIsInvalid($name, $invalidValue)
+    {
+        $stringArgument = new StringArgument($name);
+        $stringArgument->parse("-{$name} {$invalidValue}");
+    }
+
+    public function nameAndInvalidValue()
+    {
+        return [
+            "noValue" => ["name" => "d", "value" => ""]
         ];
     }
 }
