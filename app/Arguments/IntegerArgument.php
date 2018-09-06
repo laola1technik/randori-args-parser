@@ -40,17 +40,6 @@ class IntegerArgument implements Argument
 
         $this->value = $this->getArgumentValue($matches);
     }
-
-    /**
-     * @param $value
-     * @return false|int
-     */
-    private function isInteger($value)
-    {
-        $integerPattern = "/^-?\d+$/";
-        return preg_match($integerPattern, $value);
-    }
-
     private function getArgumentValue($matches)
     {
         if (!isset($matches[2])) {
@@ -70,5 +59,15 @@ class IntegerArgument implements Argument
                 "Value supplied for -{$this->name} is not an integer."
             );
         }
+    }
+
+    /**
+     * @param $value
+     * @return Boolean
+     */
+    private function isInteger($value)
+    {
+        $integerPattern = "/^-?\d+$/";
+        return preg_match($integerPattern, $value);
     }
 }

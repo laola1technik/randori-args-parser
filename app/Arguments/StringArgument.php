@@ -41,16 +41,6 @@ class StringArgument implements Argument
         $this->value = $this->getArgumentValue($matches);
     }
 
-    /**
-     * @param $value
-     * @return false|int
-     */
-    private function isString($value)
-    {
-        $stringPattern = "/^\S+$/";
-        return preg_match($stringPattern, $value);
-    }
-
     private function getArgumentValue($matches)
     {
         if (!isset($matches[2])) {
@@ -70,5 +60,15 @@ class StringArgument implements Argument
                 "Value supplied for -{$this->name} is not an string."
             );
         }
+    }
+
+    /**
+     * @param $value
+     * @return false|int
+     */
+    private function isString($value)
+    {
+        $stringPattern = "/^\S+$/";
+        return preg_match($stringPattern, $value);
     }
 }
