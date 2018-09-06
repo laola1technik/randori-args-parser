@@ -56,6 +56,8 @@ class IntegerArgumentTest extends \PHPUnit_Framework_TestCase
             "specialCharacter" => ["name" => "p", "value" => "♥"],
             "specialCharacter2" => ["name" => "p", "value" => "<2>"],
             "float" => ["name" => "p", "value" => "1.5"],
+            "noValue" => ["name" => "p", "value" => ""],
+            "whitespace" => ["name" => "p", "value" => " "],
         ];
     }
 
