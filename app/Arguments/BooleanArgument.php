@@ -48,7 +48,11 @@ class BooleanArgument implements Argument
 
     private function hasValue($matches)
     {
-        $parameterNamePattern = "/^-[a-zA-Z]/";
-        return isset($matches[2]) && !preg_match($parameterNamePattern, $matches[2]);
+        return isset($matches[2]) && !$this->isParameterName($matches);
+    }
+
+    private function isParameterName($matches)
+    {
+        return preg_match("/^-[a-zA-Z]/", $matches[2]);
     }
 }
