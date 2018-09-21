@@ -49,6 +49,7 @@ class IntegerArgumentTest extends \PHPUnit_Framework_TestCase
         $integerArgument->parse("-{$name} {$invalidValue}");
     }
 
+
     public function nameAndInvalidValue()
     {
         return [

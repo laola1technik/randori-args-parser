@@ -33,9 +33,6 @@ class BooleanArgumentTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($value);
     }
 
-    // Todo: test if value is whitespace
-    // Todo: test if value follows without whitespace
-
     /**
      * @test
      * @expectedException InvalidArgumentException
