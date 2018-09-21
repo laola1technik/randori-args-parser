@@ -5,6 +5,7 @@ namespace App\Arguments;
 
 class BooleanArgument implements Argument
 {
+    const DEFAULT_VALUE = false;
     private $name;
     private $value;
 
@@ -28,6 +29,26 @@ class BooleanArgument implements Argument
 
     public function parse($commandLineArguments)
     {
-        $this->value = strpos($commandLineArguments, "-" . $this->name) !== false;
+        $nameAndValuePattern = "/.*?-({$this->name})\s*(\S+)?/";
+
+        $argumentFound = preg_match($nameAndValuePattern, $commandLineArguments, $matches);
+        if (!$argumentFound) {
+            $this->value = self::DEFAULT_VALUE;
+            return;
+        }
+
+        if ($this->hasValue($matches)) {
+            throw new \InvalidArgumentException(
+                "Value supplied for -{$this->name} argument."
+            );
+        }
+
+        $this->value = true;
+    }
+
+    private function hasValue($matches)
+    {
+        $parameterNamePattern = "/^-[a-zA-Z]/";
+        return isset($matches[2]) && !preg_match($parameterNamePattern, $matches[2]);
     }
 }

@@ -3,6 +3,7 @@
 namespace Tests;
 
 use App\Arguments\BooleanArgument;
+use InvalidArgumentException;
 
 class BooleanArgumentTest extends \PHPUnit_Framework_TestCase
 {
@@ -30,5 +31,18 @@ class BooleanArgumentTest extends \PHPUnit_Framework_TestCase
         $value = $booleanArgument->getValue();
 
         $this->assertTrue($value);
+    }
+
+    // Todo: test if value is whitespace
+    // Todo: test if value follows without whitespace
+
+    /**
+     * @test
+     * @expectedException InvalidArgumentException
+     */
+    public function should_fail_if_value_follows_name()
+    {
+        $booleanArgument = new BooleanArgument("f");
+        $booleanArgument->parse("-f value");
     }
 }
