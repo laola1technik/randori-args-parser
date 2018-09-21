@@ -15,7 +15,7 @@ test type for all argument values
 Todo:
 
 Rethink typecasting function
-unify argument parsing
+unify argument parsing (app\Arguments\ValueParser)
 Boolean argument test error cases
 Identify pattern for arguments in commandlineArgument
 string argument test error cases
