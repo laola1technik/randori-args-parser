@@ -6,7 +6,6 @@ namespace App\Arguments;
 class IntegerArgument implements Argument
 {
     const DEFAULT_VALUE = 0;
-
     private $name;
     private $value;
 
@@ -53,18 +52,14 @@ class IntegerArgument implements Argument
         $this->value = $this->getArgumentValue($matches[2]);
     }
 
-    /**
-     * @param $matches array
-     * @return bool
-     */
-    private function hasValue($matches)
-    {
-        return isset($matches[2]);
-    }
-
     private function getArgumentValue($value)
     {
         return (int)$value;
+    }
+
+    private function hasValue($matches)
+    {
+        return isset($matches[2]);
     }
 
     private function isValid($value)

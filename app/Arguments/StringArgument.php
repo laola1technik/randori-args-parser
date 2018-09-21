@@ -5,7 +5,6 @@ namespace App\Arguments;
 
 class StringArgument implements Argument
 {
-
     const DEFAULT_VALUE = "";
     private $name;
     private $value;
@@ -38,33 +37,39 @@ class StringArgument implements Argument
             return;
         }
 
-        $this->value = $this->getArgumentValue($matches);
-    }
-
-    private function getArgumentValue($matches)
-    {
-        if (!isset($matches[2])) {
+        if (!$this->hasValue($matches)) {
             throw new \InvalidArgumentException(
                 "No value supplied for -{$this->name} argument."
             );
         }
-        $this->validateArgumentValue($matches[2]);
 
-        return $matches[2];
-    }
-
-    private function validateArgumentValue($argumentValue)
-    {
-        if (!$this->isString($argumentValue)) {
+        if(!$this->isValid($matches[2])) {
             throw new \InvalidArgumentException(
-                "Value supplied for -{$this->name} is not an string."
+                "Value supplied for -{$this->name} is not a string."
             );
         }
+
+        $this->value = $this->getArgumentValue($matches[2]);
+    }
+
+    private function getArgumentValue($value)
+    {
+        return $value;
+    }
+
+    private function hasValue($matches)
+    {
+        return isset($matches[2]);
+    }
+
+    private function isValid($value)
+    {
+        return $this->isString($value);
     }
 
     /**
      * @param $value
-     * @return false|int
+     * @return Boolean
      */
     private function isString($value)
     {
