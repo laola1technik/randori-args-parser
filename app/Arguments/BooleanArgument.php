@@ -12,6 +12,7 @@ class BooleanArgument implements Argument
     public function __construct($name)
     {
         $this->name = $name;
+        $this->value = self::DEFAULT_VALUE;
     }
 
     public function getName()
@@ -33,7 +34,6 @@ class BooleanArgument implements Argument
 
         $argumentFound = preg_match($nameAndValuePattern, $commandLineArguments, $matches);
         if (!$argumentFound) {
-            $this->value = self::DEFAULT_VALUE;
             return;
         }
 
