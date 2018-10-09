@@ -2,14 +2,32 @@
 
 namespace App\Arguments;
 
-interface Argument
+abstract class Argument
 {
-    /**
-     * @return string
-     */
-    public function getName();
+    protected $name;
 
-    public function getValue();
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
 
-    public function parse($commandLineArguments);
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function parse($commandLineArguments)
+    {
+        $nameAndValuePattern = "/.*?-({$this->name})\s*(\S+)?/";
+
+        $argumentFound = preg_match($nameAndValuePattern, $commandLineArguments, $matches);
+        if (!$argumentFound) {
+            return;
+        }
+
+        $this->setValue($matches);
+
+    }
+
+    abstract protected function setValue($matches);
 }

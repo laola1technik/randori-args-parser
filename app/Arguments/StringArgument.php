@@ -3,21 +3,15 @@
 namespace App\Arguments;
 
 
-class StringArgument implements Argument
+class StringArgument extends Argument
 {
     const DEFAULT_VALUE = "";
-    private $name;
     private $value;
 
     public function __construct($name)
     {
         $this->name = $name;
         $this->value = self::DEFAULT_VALUE;
-    }
-
-    public function getName()
-    {
-        return $this->name;
     }
 
     /**
@@ -28,15 +22,8 @@ class StringArgument implements Argument
         return $this->value;
     }
 
-    public function parse($commandLineArguments)
+    protected function setValue($matches)
     {
-        $nameAndValuePattern = "/.*?-({$this->name})\s*(\S+)?/";
-
-        $argumentFound = preg_match($nameAndValuePattern, $commandLineArguments, $matches);
-        if (!$argumentFound) {
-            return;
-        }
-
         if (!$this->hasValue($matches)) {
             throw new \InvalidArgumentException(
                 "No value supplied for -{$this->name} argument."
