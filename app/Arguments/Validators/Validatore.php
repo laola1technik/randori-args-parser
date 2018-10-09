@@ -20,15 +20,20 @@ abstract class Validatore implements Validator
             );
         }
 
-        if (isset($matches[2]) && !$this->isValid($matches[2])) {
+        if ($this->hasArgumentValue($matches) && !$this->isValid($matches[2])) {
             throw new \InvalidArgumentException(
                 $this->getValueFormatException()
             );
         }
     }
 
+    private function hasArgumentValue($matches)
+    {
+        return isset($matches[2]);
+    }
+
     abstract protected function isCorrectArgumentFormat($matches);
     abstract protected function getArgumentException();
-    abstract protected function getValueFormatException();
     abstract protected function isValid($value);
+    abstract protected function getValueFormatException();
 }
