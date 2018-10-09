@@ -24,7 +24,7 @@ class BooleanArgument extends Argument
 
     protected function setValue($matches)
     {
-        if ($this->hasValue($matches)) {
+        if (!$this->isCorrectArgumentFormat($matches)) {
             throw new \InvalidArgumentException(
                 "Value supplied for -{$this->name} argument."
             );
@@ -33,9 +33,9 @@ class BooleanArgument extends Argument
         $this->value = true;
     }
 
-    private function hasValue($matches)
+    private function isCorrectArgumentFormat($matches)
     {
-        return isset($matches[2]) && !$this->isParameterName($matches);
+        return !(isset($matches[2]) && !$this->isParameterName($matches));
     }
 
     private function isParameterName($matches)

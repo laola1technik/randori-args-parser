@@ -24,7 +24,7 @@ class IntegerArgument extends Argument
 
     protected function setValue($matches)
     {
-        if (!$this->hasValue($matches)) {
+        if (!$this->isCorrectArgumentFormat($matches)) {
             throw new \InvalidArgumentException(
                 "No value supplied for -{$this->name} argument."
             );
@@ -44,7 +44,7 @@ class IntegerArgument extends Argument
         return (int)$value;
     }
 
-    private function hasValue($matches)
+    private function isCorrectArgumentFormat($matches)
     {
         return isset($matches[2]);
     }
