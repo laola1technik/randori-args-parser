@@ -2,16 +2,19 @@
 
 namespace App\Arguments;
 
+use App\Arguments\Validators\Validatore;
 
 class IntegerArgument extends Argument
 {
     const DEFAULT_VALUE = 0;
     private $value;
+    private $validator;
 
-    public function __construct($name)
+    public function __construct($name, Validatore $validator)
     {
         $this->name = $name;
         $this->value = self::DEFAULT_VALUE;
+        $this->validator = $validator;
     }
 
     /**
@@ -24,43 +27,12 @@ class IntegerArgument extends Argument
 
     protected function setValue($matches)
     {
-        if (!$this->isCorrectArgumentFormat($matches)) {
-            throw new \InvalidArgumentException(
-                "No value supplied for -{$this->name} argument."
-            );
-        }
-
-        if(!$this->isValid($matches[2])) {
-            throw new \InvalidArgumentException(
-                "Value supplied for -{$this->name} is not an integer."
-            );
-        }
-
+        $this->validator->validate($this, $matches);
         $this->value = $this->getArgumentValue($matches[2]);
     }
 
     private function getArgumentValue($value)
     {
         return (int)$value;
-    }
-
-    private function isCorrectArgumentFormat($matches)
-    {
-        return isset($matches[2]);
-    }
-
-    private function isValid($value)
-    {
-        return $this->isInteger($value);
-    }
-
-    /**
-     * @param $value
-     * @return Boolean
-     */
-    private function isInteger($value)
-    {
-        $integerPattern = "/^-?\d+$/";
-        return preg_match($integerPattern, $value);
     }
 }

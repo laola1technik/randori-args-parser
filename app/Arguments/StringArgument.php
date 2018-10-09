@@ -2,17 +2,19 @@
 
 namespace App\Arguments;
 
-use App\Arguments\Validators\StringValidator;
+use App\Arguments\Validators\Validatore;
 
 class StringArgument extends Argument
 {
     const DEFAULT_VALUE = "";
     private $value;
+    private $validator;
 
-    public function __construct($name)
+    public function __construct($name, Validatore $validator)
     {
         $this->name = $name;
         $this->value = self::DEFAULT_VALUE;
+        $this->validator = $validator;
     }
 
     /**
@@ -25,8 +27,7 @@ class StringArgument extends Argument
 
     protected function setValue($matches)
     {
-        $validator = new StringValidator($this);
-        $validator->validate($matches);
+        $this->validator->validate($this, $matches);
         $this->value = $this->getArgumentValue($matches[2]);
     }
 

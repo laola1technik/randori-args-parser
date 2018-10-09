@@ -2,28 +2,30 @@
 
 namespace App\Arguments\Validators;
 
-use App\Arguments\BooleanArgument;
-
-class BooleanValidator implements Validator
+class BooleanValidator extends Validatore
 {
-    private $argument;
-
-    public function __construct(BooleanArgument $argument)
+    protected function isValid($value)
     {
-        $this->argument = $argument;
+        return true;
     }
 
-    public function validate($matches)
+    protected function isCorrectArgumentFormat($matches)
     {
-        if (isset($matches[2]) && !$this->isParameterName($matches)) {
-            throw new \InvalidArgumentException(
-                "Value supplied for -{$this->argument->getName()} argument."
-            );
-        }
+        return !(isset($matches[2]) && !$this->isParameterName($matches));
     }
 
     private function isParameterName($matches)
     {
         return preg_match("/^-[a-zA-Z]/", $matches[2]);
+    }
+
+    public function getArgumentException()
+    {
+        return "No value supplied for -{$this->argument->getName()} argument.";
+    }
+
+    protected function getValueFormatException()
+    {
+        return "Value supplied for -{$this->argument->getName()} is not an boolean.";
     }
 }

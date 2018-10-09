@@ -3,6 +3,7 @@
 namespace Tests;
 
 use App\Arguments\BooleanArgument;
+use App\Arguments\Validators\BooleanValidator;
 use InvalidArgumentException;
 
 class BooleanArgumentTest extends \PHPUnit_Framework_TestCase
@@ -12,7 +13,7 @@ class BooleanArgumentTest extends \PHPUnit_Framework_TestCase
      */
     public function should_get_false_value_if_false()
     {
-        $booleanArgument = new BooleanArgument("f");
+        $booleanArgument = new BooleanArgument("f", new BooleanValidator());
         $booleanArgument->parse("-x");
 
         $value = $booleanArgument->getValue();
@@ -25,7 +26,7 @@ class BooleanArgumentTest extends \PHPUnit_Framework_TestCase
      */
     public function should_get_true_value_if_argument_is_present()
     {
-        $booleanArgument = new BooleanArgument("f");
+        $booleanArgument = new BooleanArgument("f", new BooleanValidator());
         $booleanArgument->parse("-f");
 
         $value = $booleanArgument->getValue();
@@ -39,7 +40,7 @@ class BooleanArgumentTest extends \PHPUnit_Framework_TestCase
      */
     public function should_fail_if_value_follows_name()
     {
-        $booleanArgument = new BooleanArgument("f");
+        $booleanArgument = new BooleanArgument("f", new BooleanValidator());
         $booleanArgument->parse("-f value");
     }
 }

@@ -3,6 +3,7 @@
 namespace Tests;
 
 use App\Arguments\IntegerArgument;
+use App\Arguments\Validators\IntegerValidator;
 use InvalidArgumentException;
 
 class IntegerArgumentTest extends \PHPUnit_Framework_TestCase
@@ -15,7 +16,7 @@ class IntegerArgumentTest extends \PHPUnit_Framework_TestCase
      */
     public function should_get_integer_value($name, $value)
     {
-        $integerArgument = new IntegerArgument($name);
+        $integerArgument = new IntegerArgument($name, new IntegerValidator());
         $integerArgument->parse("-{$name} {$value}");
 
         $matchedValue = $integerArgument->getValue();
@@ -45,7 +46,7 @@ class IntegerArgumentTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldFailIfValueIsInvalid($name, $invalidValue)
     {
-        $integerArgument = new IntegerArgument($name);
+        $integerArgument = new IntegerArgument($name, new IntegerValidator());
         $integerArgument->parse("-{$name} {$invalidValue}");
     }
 
@@ -69,7 +70,7 @@ class IntegerArgumentTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldFailIfValueIsMissing()
     {
-        $integerArgument = new IntegerArgument("p");
+        $integerArgument = new IntegerArgument("p", new IntegerValidator());
 
         $integerArgument->parse("-p");
         $integerArgument->getValue();
@@ -80,7 +81,7 @@ class IntegerArgumentTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldReturnDefaultValueIfArgumentIsMissing()
     {
-        $integerArgument = new IntegerArgument("p");
+        $integerArgument = new IntegerArgument("p", new IntegerValidator());
 
         $integerArgument->parse("any");
 

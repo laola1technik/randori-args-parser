@@ -2,12 +2,12 @@
 
 namespace App\Arguments\Validators;
 
-class StringValidator extends Validatore
+class IntegerValidator extends Validatore
 {
     protected function isValid($value)
     {
-        $stringPattern = "/^\S+$/";
-        return preg_match($stringPattern, $value);
+        $integerPattern = "/^-?\d+$/";
+        return preg_match($integerPattern, $value);
     }
 
     protected function isCorrectArgumentFormat($matches)
@@ -22,6 +22,6 @@ class StringValidator extends Validatore
 
     protected function getValueFormatException()
     {
-        return "Value supplied for -{$this->argument->getName()} is not an string.";
+        return "Value supplied for -{$this->argument->getName()} is not an integer.";
     }
 }
