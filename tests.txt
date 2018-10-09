@@ -14,6 +14,8 @@ test type for all argument values
 
 Todo:
 
+Add IntegerValidator
+Add ListArgument
 Rethink typecasting function
 unify argument parsing (app\Arguments\ValueParser)
 Boolean argument test error cases
