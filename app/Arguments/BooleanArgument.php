@@ -3,6 +3,8 @@
 namespace App\Arguments;
 
 
+use App\Arguments\Validators\BooleanValidator;
+
 class BooleanArgument extends Argument
 {
     const DEFAULT_VALUE = false;
@@ -19,27 +21,16 @@ class BooleanArgument extends Argument
      */
     public function getValue()
     {
+
         return $this->value;
     }
 
     protected function setValue($matches)
     {
-        if (!$this->isCorrectArgumentFormat($matches)) {
-            throw new \InvalidArgumentException(
-                "Value supplied for -{$this->name} argument."
-            );
-        }
-
+        $validator = new BooleanValidator($this);
+        $validator->validate($matches);
         $this->value = true;
     }
 
-    private function isCorrectArgumentFormat($matches)
-    {
-        return !(isset($matches[2]) && !$this->isParameterName($matches));
-    }
 
-    private function isParameterName($matches)
-    {
-        return preg_match("/^-[a-zA-Z]/", $matches[2]);
-    }
 }
