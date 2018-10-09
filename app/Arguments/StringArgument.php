@@ -2,6 +2,7 @@
 
 namespace App\Arguments;
 
+use App\Arguments\Validators\StringValidator;
 
 class StringArgument extends Argument
 {
@@ -24,18 +25,8 @@ class StringArgument extends Argument
 
     protected function setValue($matches)
     {
-        if (!$this->isCorrectArgumentFormat($matches)) {
-            throw new \InvalidArgumentException(
-                "No value supplied for -{$this->name} argument."
-            );
-        }
-
-        if(!$this->isValid($matches[2])) {
-            throw new \InvalidArgumentException(
-                "Value supplied for -{$this->name} is not a string."
-            );
-        }
-
+        $validator = new StringValidator($this);
+        $validator->validate($matches);
         $this->value = $this->getArgumentValue($matches[2]);
     }
 
@@ -44,23 +35,4 @@ class StringArgument extends Argument
         return $value;
     }
 
-    private function isCorrectArgumentFormat($matches)
-    {
-        return isset($matches[2]);
-    }
-
-    private function isValid($value)
-    {
-        return $this->isString($value);
-    }
-
-    /**
-     * @param $value
-     * @return Boolean
-     */
-    private function isString($value)
-    {
-        $stringPattern = "/^\S+$/";
-        return preg_match($stringPattern, $value);
-    }
 }
