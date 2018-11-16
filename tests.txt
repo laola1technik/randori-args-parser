@@ -14,16 +14,10 @@ test type for all argument values
 
 Todo:
 
-Analyze Code duplication
-Add IntegerValidator
+Initialize arguments with correct validator
+Check for argument names with more than one character
 Add ListArgument
-Rethink typecasting function
-unify argument parsing (app\Arguments\ValueParser)
-Boolean argument test error cases
-Identify pattern for arguments in commandlineArgument
 string argument test error cases
 handle string argument with whitespace in between
 handle string argument: minus and one more character
 handle string argument in quotes
-Check for argument names with more than one character
-test if value is whitespace (Boolean)
