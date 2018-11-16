@@ -2,7 +2,7 @@
 
 namespace App\Arguments;
 
-use App\Arguments\Validators\Validatore;
+use App\Arguments\Validators\Validator;
 
 class BooleanArgument extends Argument
 {
@@ -10,7 +10,7 @@ class BooleanArgument extends Argument
     private $value;
     private $validator;
 
-    public function __construct($name, Validatore $validator)
+    public function __construct($name, Validator $validator)
     {
         $this->name = $name;
         $this->value = self::DEFAULT_VALUE;

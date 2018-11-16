@@ -2,7 +2,7 @@
 
 namespace App\Arguments\Validators;
 
-class BooleanValidator extends Validatore
+class BooleanValidator extends Validator
 {
     protected function isValid($value)
     {

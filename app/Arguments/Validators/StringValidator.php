@@ -2,7 +2,7 @@
 
 namespace App\Arguments\Validators;
 
-class StringValidator extends Validatore
+class StringValidator extends Validator
 {
     protected function isValid($value)
     {
