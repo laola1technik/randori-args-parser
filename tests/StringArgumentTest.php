@@ -3,7 +3,6 @@
 namespace Tests;
 
 use App\Arguments\StringArgument;
-use App\Arguments\Validators\StringValidator;
 use InvalidArgumentException;
 
 class StringArgumentTest extends \PHPUnit_Framework_TestCase
@@ -13,7 +12,7 @@ class StringArgumentTest extends \PHPUnit_Framework_TestCase
      */
     public function should_get_string_value_a()
     {
-        $stringArgument = new StringArgument("s", new StringValidator());
+        $stringArgument = new StringArgument("s");
         $expectedValue = "a";
         $stringArgument->parse("-s " . $expectedValue);
 
@@ -27,7 +26,7 @@ class StringArgumentTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldReturnDefaultValueIfArgumentIsMissing()
     {
-        $stringArgument = new StringArgument("s", new StringValidator());
+        $stringArgument = new StringArgument("s");
 
         $stringArgument->parse("any");
 
@@ -42,7 +41,7 @@ class StringArgumentTest extends \PHPUnit_Framework_TestCase
      */
     public function should_get_string_value($name, $value)
     {
-        $stringArgument = new StringArgument($name, new StringValidator());
+        $stringArgument = new StringArgument($name);
         $stringArgument->parse("-{$name} {$value}");
 
         $matchedValue = $stringArgument->getValue();
@@ -73,7 +72,7 @@ class StringArgumentTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldFailIfValueIsInvalid($name, $invalidValue)
     {
-        $stringArgument = new StringArgument($name, new StringValidator());
+        $stringArgument = new StringArgument($name);
         $stringArgument->parse("-{$name} {$invalidValue}");
     }
 

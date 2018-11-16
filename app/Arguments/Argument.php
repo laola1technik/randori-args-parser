@@ -2,9 +2,25 @@
 
 namespace App\Arguments;
 
+use App\Arguments\Validators\ValidatorFactory;
+
 abstract class Argument
 {
     protected $name;
+    protected $value;
+    protected $validator;
+    const DEFAULT_VALUE = null;
+
+    /**
+     * BooleanArgument constructor.
+     * @param $name
+     */
+    public function __construct($name)
+    {
+        $this->name = $name;
+        $this->value = $this::DEFAULT_VALUE;
+        $this->validator = ValidatorFactory::create(get_class($this));
+    }
 
     public function setName($name)
     {

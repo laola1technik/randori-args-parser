@@ -6,9 +6,6 @@ use App\ArgumentParser;
 use App\Arguments\BooleanArgument;
 use App\Arguments\IntegerArgument;
 use App\Arguments\StringArgument;
-use App\Arguments\Validators\BooleanValidator;
-use App\Arguments\Validators\IntegerValidator;
-use App\Arguments\Validators\StringValidator;
 use App\Scheme;
 
 class ArgumentsParserTest extends \PHPUnit_Framework_TestCase
@@ -20,9 +17,9 @@ class ArgumentsParserTest extends \PHPUnit_Framework_TestCase
     {
         $commandLineArguments = '-l -p 8080 -d /usr/logs';
         $arguments = [
-            new BooleanArgument("l", new BooleanValidator()),
-            new IntegerArgument("p", new IntegerValidator()),
-            new StringArgument("d", new StringValidator())
+            new BooleanArgument("l"),
+            new IntegerArgument("p"),
+            new StringArgument("d")
         ];
         $scheme = new Scheme($arguments);
         $argumentParser = new ArgumentParser($scheme);
