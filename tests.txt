@@ -14,7 +14,6 @@ test type for all argument values
 
 Todo:
 
-Initialize arguments with correct validator
 Check for argument names with more than one character
 Add ListArgument
 string argument test error cases
