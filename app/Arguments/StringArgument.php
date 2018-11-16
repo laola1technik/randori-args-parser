@@ -35,5 +35,4 @@ class StringArgument extends Argument
     {
         return $value;
     }
-
 }

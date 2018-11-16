@@ -22,7 +22,6 @@ class BooleanArgument extends Argument
      */
     public function getValue()
     {
-
         return $this->value;
     }
 
@@ -31,6 +30,4 @@ class BooleanArgument extends Argument
         $this->validator->validate($this, $matches);
         $this->value = true;
     }
-
-
 }

@@ -26,7 +26,6 @@ abstract class Argument
         }
 
         $this->setValue($matches);
-
     }
 
     abstract protected function setValue($matches);
